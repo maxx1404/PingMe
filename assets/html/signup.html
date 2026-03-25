@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PingMe</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <div class = "signup-page" id = "signuppage">
+        <div class= 'signup-box' id = 'signupbox'>
+            <img src="../images/logo.png" alt="PingMe Logo">
+            <h2>Welcome to PingMe!</h2>
+
+            <div class="phone-input-row">
+                <select id ='countrycode'>
+                    <option value="+91" selected>+91 India</option>
+                        <option value="+1">+1 USA</option>
+                        <option value="+44">+44 UK</option>
+                        <option value="+61">+61 Australia</option>
+                        <option value="+81">+81 Japan</option>
+                        <option value="+49">+49 Germany</option>
+                        <option value="+33">+33 France</option>
+                        <option value="+55">+55 Brazil</option>
+                        <option value="+86">+86 China</option>
+                        <option value="+82">+82 South Korea</option>
+                    </select>
+                <input type="text" id="phoneInput" placeholder="Enter your phone number" maxlength="10">
+            </div>
+            <span class="error-msg" id="phoneError"></span>
+            <input type="password" id="passwordInput" placeholder="Create your password" >
+            <span class="error-msg" id="passwordError"></span>
+            <input type="password" id="confirmpasswordInput" placeholder="Re-enter your password">
+            <span class="error-msg" id="confirmError"></span>
+            <button id="signupbutton"> Sign Up</button>
+            <p class="login-link"> Already have an account? <a href="login.html">Login Here</a></p>
+            
+        </div>
+    </div>
+    <script src="../js/signup.js"></script>
+</body>
+</html>
