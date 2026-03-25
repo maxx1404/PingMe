@@ -3,9 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PingMe</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <h2>enenenen</h2>
+
+    <div class = 'container'>
+
+        <div class = 'sidebar'>
+            
+            <img class='profile-pic' src='../imagess/user1pic.png'>
+            <img class = 'chat-icon' src='../imagess/speaking-bubbles-black-icon.svg'>
+            <img class = 'status-icon' src='../imagess/stories-icon.svg'>
+            <img class = 'call-icon' src='../imagess/calling-icon.svg'>
+        </div>
+
+        <div class="profile-panel" id="profilePanel">
+            <div class="profile-panel-header">
+                <i class="fa-solid fa-arrow-left" id="closeProfile"></i>
+                <span>Profile</span>
+            </div>
+            <div class="profile-panel-body">
+                <img class="profile-panel-pic" id="profilePanelPic" src="../imagess/user1pic.png">
+                <input type="file" id="profileImageInput" accept="image/*" style="display:none">
+                <button id="changePhotoBtn">Change Photo</button>
+                <label>Your Name</label>
+                <input type="text" id="profileNameInput" value="Your Name">
+                <label>Status</label>
+                <input type="text" id="profileStatusInput" value="Hey there! I am using WhatsApp">
+                <button id="saveProfileBtn">Save</button>
+
+                <button id="logoutBtn">LogOut</button>
+            </div>
+        </div>
+
+        <div class = 'chatbar'>
+
+            <div class = 'chatbar-header'>
+
+                <div class="logo-box">
+                    <img src="../imagess/logo.png" alt="EchoCHAT Logo" class="logologo">
+                </div>
+                    PingME
+
+            </div>
+
+            <div class='search-bar'>
+                <input type='text' id='contactSearch' placeholder='Search chats'>
+            </div>
+
+            <div class="chat-list" id="'chatlist">
+
+            </div>
+        </div>
+
+        <div class="blank-screen" id="blankScreen">
+            <img src="../imagess/backgroundimg.png">
+            <p>EchoCHAT</p>
+            <span>Click on a chat to start messaging</span>
+        </div>
+
+        <div class ='chat-window' id="chatWindow">
+
+            <div class="chat-header">
+
+                <div class="msg-search-bar" id="msgSearchBar" style="display:none">
+                    <input type="text" id="msgSearchInput" placeholder="Search messages...">
+                    <i class="fa-solid fa-x" id="closeMsgSearch"></i>
+                </div>
+
+                <img class="profile-pic" id="profilePic" src="../imagess/user1pic.png">
+
+                <span class="chat-title" id="chatTitle">John</span>
+
+                <div class="chat-icons">
+                    <i class="fa-solid fa-video"></i>
+                    <i class="fa-solid fa-phone"></i>
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                    <i class="fa-solid fa-magnifying-glass" id="openMsgSearch"></i>
+                </div>
+
+            </div>
+
+            <div class="message-area" id="messageArea">
+
+            </div>
+                <div class = "input-message">
+                    <input type = 'text' id = "messageInput" placeholder = 'Type your message...'>
+
+                    <button id="sendBtn"> Send </button>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="other-profile-panel" id="otherProfilePanel">
+            <div class="profile-panel-header">
+                <i class="fa-solid fa-arrow-left" id="closeOtherProfile"></i>
+                <span>Contact Info</span>
+            </div>
+            <div class="profile-panel-body">
+                <img class="profile-panel-pic" id="otherProfilePic" src="">
+                <h2 id="otherProfileName"></h2>
+                <p id="otherProfileStatus">Hey there! I am using WhatsApp</p>
+                <hr style="width:100%">
+                <p style="color:gray; font-size:14px">~About</p>
+                <p id="otherProfileAbout">Available</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/index.js"></script>
 </body>
 </html>
