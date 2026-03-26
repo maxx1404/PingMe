@@ -265,3 +265,20 @@ select#countrycode option {
     border-color: var(--green);
     box-shadow: 0 0 0 3px var(--green-glow);
 }
+
+.container{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+
+}
+
+.sidebar{
+    width: 10%;
+    background-color: #128C7E;   
+    align-items: center;
+    display: flex;
+    flex-direction: column; 
+    gap:50px;
+    padding: 30px;
+}
