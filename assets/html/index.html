@@ -8,24 +8,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-
-    <div class = 'container'>
+        <div class = 'container'>
 
         <div class = 'sidebar'>
             
-            <img class='profile-pic' src='../images/user1pic.png'>
-            <img class = 'chat-icon' src='../images/speaking-bubbles-black-icon.svg'>
-            <img class = 'status-icon' src='../images/stories-icon.svg'>
-            <img class = 'call-icon' src='../images/calling-icon.svg'>
+            <img class='profile-pic' src='../imagess/user1pic.png'>
+            <img class = 'chat-icon' src='../imagess/speaking-bubbles-black-icon.svg'>
+            <img class = 'status-icon' src='../imagess/stories-icon.svg'>
+            <img class = 'call-icon' src='../imagess/calling-icon.svg'>
         </div>
-
+     
         <div class="profile-panel" id="profilePanel">
             <div class="profile-panel-header">
                 <i class="fa-solid fa-arrow-left" id="closeProfile"></i>
                 <span>Profile</span>
             </div>
             <div class="profile-panel-body">
-                <img class="profile-panel-pic" id="profilePanelPic" src="../images/user1pic.png">
+                <img class="profile-panel-pic" id="profilePanelPic" src="../imagess/user1pic.png">
                 <input type="file" id="profileImageInput" accept="image/*" style="display:none">
                 <button id="changePhotoBtn">Change Photo</button>
                 <label>Your Name</label>
@@ -43,7 +42,7 @@
             <div class = 'chatbar-header'>
 
                 <div class="logo-box">
-                    <img src="../images/logo.png" alt="EchoCHAT Logo" class="logologo">
+                    <img src="../imagess/logo.png" alt="EchoCHAT Logo" class="logologo">
                 </div>
                     PingME
 
@@ -53,15 +52,84 @@
                 <input type='text' id='contactSearch' placeholder='Search chats'>
             </div>
 
-            <div class="chat-list" id="'chatlist">
+            <div class="chat-list">
 
+                <div class='chat'>
+                    <img class='profile-pic' src='../imagess/user1pic.png'>
+                    <div class='chat-info'>
+                        <div class='chat-name'>Aarav Sharma</div>
+                        <div class='chat-message'>Late night coding again?</div>
+                    </div>
+                </div>
+                <div class='chat'>
+                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
+                    <div class='chat-info'>
+                        <div class='chat-name'>Vivaan Patel</div>
+                        <div class='chat-message'>Beach vibes were insane </div>
+                    </div>
+                </div>
+                <div class='chat'>
+                    <img class='profile-pic' src='../imagess/user1pic.png'>
+                    <div class='chat-info'>
+                        <div class='chat-name'>Aditya Verma</div>
+                        <div class='chat-message'>New gym PR today! </div>
+                    </div>
+                </div>
+                <div class='chat'>
+                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
+                    <div class='chat-info'>
+                        <div class='chat-name'>Ishaan Gupta</div>
+                        <div class='chat-message'>Birthday celebration was madness </div>
+                    </div>
+                </div>
+                <div class='chat'>
+                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
+                    <div class='chat-info'>
+                        <div class='chat-name'>Arjun Mehta</div>
+                        <div class='chat-message'>Coffee + rain = perfect combo </div>
+                    </div>
+                </div>
+                <div class='chat'>
+                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
+                    <div class='chat-info'>
+                        <div class='chat-name'>Reyansh Singh</div>
+                        <div class='chat-message'>Exam week survival mode ON </div>
+                    </div>
+                </div>
+                <div class='chat'>
+                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
+                    <div class='chat-info'>
+                        <div class='chat-name'>Krishna Rao</div>
+                        <div class='chat-message'>Roadtrip was unreal </div>
+                    </div>
+                </div>
+                <div class='chat'>
+                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
+                    <div class='chat-info'>
+                        <div class='chat-name'>Kabir Malhotra</div>
+                        <div class='chat-message'>Finally watched Oppenheimer</div>
+                    </div>
+                </div>
+                <div class='chat'>
+                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
+                    <div class='chat-info'>
+                        <div class='chat-name'>Rohan Desai</div>
+                        <div class='chat-message'>Mess food review dropping soon </div>
+                    </div>
+                </div>
+                <div class='chat'>
+                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
+                    <div class='chat-info'>
+                        <div class='chat-name'>Aryan Nair</div>
+                        <div class='chat-message'>Hackathon mode ON </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="blank-screen" id="blankScreen">
-            <img src="../images/backgroundimg.png">
-            <p>EchoCHAT</p>
-            <span>Click on a chat to start messaging</span>
+        <div class="blank-screen" id='blankScreen'>
+            <h2>PingMe</h2>
+            <h4>Click on a chat to start messaging</h4>
         </div>
 
         <div class ='chat-window' id="chatWindow">
@@ -73,7 +141,7 @@
                     <i class="fa-solid fa-x" id="closeMsgSearch"></i>
                 </div>
 
-                <img class="profile-pic" id="profilePic" src="../images/user1pic.png">
+                <img class="profile-pic" id="profilePic" src="../imagess/user1pic.png">
 
                 <span class="chat-title" id="chatTitle">John</span>
 
@@ -88,6 +156,7 @@
 
             <div class="message-area" id="messageArea">
 
+
             </div>
                 <div class = "input-message">
                     <input type = 'text' id = "messageInput" placeholder = 'Type your message...'>
@@ -96,7 +165,7 @@
                 </div>
             </div>
             
-        </div>
+  
 
         <div class="other-profile-panel" id="otherProfilePanel">
             <div class="profile-panel-header">
@@ -113,7 +182,6 @@
             </div>
         </div>
     </div>
-
-    <script src="../js/index.js"></script>
+    <script src="../js/index.js"></script> 
 </body>
 </html>
