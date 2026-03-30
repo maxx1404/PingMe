@@ -13,12 +13,17 @@ document.getElementById('loginbutton').addEventListener('click',function() {
 
     let login_password = document.getElementById('passwordInput').value
 
-    if (phonenumber!==localStorage.getItem('phone_number') || (login_password!==localStorage.getItem('password'))) {
-        document.getElementById('passwordError').textContent='Password is not matching'
-        console.log('yepos')
-        isValid=false
-        alert('Phone Number or Password does not match')
+    let user = JSON.parse(localStorage.getItem('user_' + phonenumber));
+    if (!user) {
+        alert('No account found! Please sign up.');
+        return;
     }
+    if (user.password !== login_password) {
+        document.getElementById('passwordError').textContent = 'Wrong password!';
+        isValid = false;
+    }
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('currentUserPhone', phonenumber);
 
     if (isValid) {
         alert('Phone Number logged in successfully')
@@ -36,6 +41,8 @@ document.getElementById('loginbutton').addEventListener('click',function() {
             let userOtp = document.getElementById('otpInput').value
 
             if (userOtp == otp) {
+                localStorage.setItem('isLoggedIn', 'true')
+                localStorage.setItem('currentUserPhone',phonenumber)
                 alert('Logged in succesfully')
                 window.location.href= '../html/index.html'
             } else {

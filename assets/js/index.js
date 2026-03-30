@@ -1,3 +1,16 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../html/login.html';
+}
+
+if (!localStorage.getItem('demoSeeded')) {
+    const demoUsers = [
+        { name: 'PingMe', phone: '1234567890', password: 'admin' },
+    ];
+    demoUsers.forEach(function(user) {
+        localStorage.setItem('user_' + user.phone, JSON.stringify(user));
+    });
+    localStorage.setItem('demoSeeded', 'true');
+}
 
 const profilePanel = document.getElementById("profilePanel");
 const closeProfile = document.getElementById("closeProfile");
@@ -31,39 +44,12 @@ blankScreen.style.display = "flex";
 chatWindow.style.display = "none";
 
 const defaultChats = {
-    "Aarav Sharma": `<div class="recieved-message">Hey! Late night coding again?<span class="timestamp">11:30</span></div>
-                    <div class="sent-message">Haha yeah can't stop <span class="timestamp">11:31</span></div>
-                    <div class="recieved-message">Same bro, hackathon prep <span class="timestamp">11:32</span></div>`,
-    "Vivaan Patel": `<div class="recieved-message">Beach vibes were insane today <span class="timestamp">6:00</span></div>
-                    <div class="sent-message">No way you went without me!! <span class="timestamp">6:01</span></div>
-                    <div class="recieved-message">Next time I promise <span class="timestamp">6:02</span></div>`,
-    "Aditya Verma": `<div class="recieved-message">New gym PR today! <span class="timestamp">7:00</span></div>
-                    <div class="sent-message">Beast mode activated! <span class="timestamp">7:01</span></div>
-                    <div class="recieved-message">Come join me tomorrow! <span class="timestamp">7:02</span></div>`,
-    "Ishaan Gupta": `<div class="recieved-message">Birthday celebration was madness <span class="timestamp">8:00</span></div>
-                    <div class="sent-message">Best night ever!! <span class="timestamp">8:01</span></div>`,
-    "Arjun Mehta": `<div class="recieved-message">Coffee + rain = perfect combo <span class="timestamp">9:00</span></div>
-                    <div class="sent-message">Facts, best feeling ever <span class="timestamp">9:01</span></div>
-                    <div class="recieved-message">Come over? <span class="timestamp">9:02</span></div>`,
-    "Reyansh Singh": `<div class="recieved-message">Exam week survival mode ON <span class="timestamp">10:00</span></div>
-                    <div class="sent-message">We got this!! <span class="timestamp">10:01</span></div>`,
-    "Krishna Rao": `<div class="recieved-message">Roadtrip was unreal <span class="timestamp">3:00</span></div>
-                    <div class="sent-message">When's the next one?? <span class="timestamp">3:01</span></div>
-                    <div class="recieved-message">Next month for sure! <span class="timestamp">3:02</span></div>`,
-    "Kabir Malhotra": `<div class="recieved-message">Finally watched Oppenheimer <span class="timestamp">4:00</span></div>
-                    <div class="sent-message">Took you long enough <span class="timestamp">4:01</span></div>`,
-    "Rohan Desai": `<div class="recieved-message">Mess food review dropping soon <span class="timestamp">1:00</span></div>
-                    <div class="sent-message">Finally someone's doing it <span class="timestamp">1:01</span></div>
-                    <div class="recieved-message">Subscribe to my channel <span class="timestamp">1:02</span></div>`,
-    "Aryan Nair": `<div class="recieved-message">Hackathon mode ON <span class="timestamp">2:00</span></div>
-                    <div class="recieved-message">AI/ML obviously <span class="timestamp">2:02</span></div>`,
 };
 
-let chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || defaultChats;
-let savedHistory = JSON.parse(localStorage.getItem('chatHistory'));
-if (savedHistory) {
-    chatHistory = savedHistory;
-}
+
+let currentUserPhone = localStorage.getItem('currentUserPhone');
+let chatHistory = JSON.parse(localStorage.getItem('chatHistory_'+ currentUserPhone)) || defaultChats;
+
 
 if (localStorage.getItem('profileName')) profileNameInput.value = localStorage.getItem('profileName');
 if (localStorage.getItem('profileStatus')) profileStatusInput.value = localStorage.getItem('profileStatus');
@@ -76,8 +62,7 @@ if (localStorage.getItem('profilePic')) {
 sendBtn.addEventListener("click", function() {
 
     chatHistory[currentChat] = messageArea.innerHTML;
-    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-
+    localStorage.setItem('chatHistory_' + currentUserPhone, JSON.stringify(chatHistory));
     if (!messageArea.querySelector('.date-divider')) {
     const dateDivider = document.createElement('div');
     dateDivider.classList.add('date-divider');
@@ -106,7 +91,29 @@ sendBtn.addEventListener("click", function() {
     messageInput.value = "";
 
     chatHistory[currentChat] = messageArea.innerHTML;
-    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+    localStorage.setItem('chatHistory_' + currentUserPhone, JSON.stringify(chatHistory));
+
+    let contacts = JSON.parse(localStorage.getItem('contacts_' + currentUserPhone)) || [];
+    let contact = contacts.find(c => c.name === currentChat);
+    if (contact) {
+        let receiverPhone = contact.phone;
+    
+    let receiverHistory = JSON.parse(localStorage.getItem('chatHistory_' + receiverPhone)) || {};
+    let currentUserData = JSON.parse(localStorage.getItem('user_' + currentUserPhone));
+    let myName = currentUserData ? currentUserData.name : currentUserPhone;
+    receiverHistory[myName] = messageArea.innerHTML;
+    localStorage.setItem('chatHistory_' + receiverPhone, JSON.stringify(receiverHistory));
+
+    let receiverContacts = JSON.parse(localStorage.getItem('contacts_' + receiverPhone)) || [];
+    if (!receiverContacts.find(c => c.phone === currentUserPhone)) {
+        receiverContacts.push({ 
+            name: myName, 
+            phone: currentUserPhone 
+        });
+        localStorage.setItem('contacts_' + receiverPhone, JSON.stringify(receiverContacts));
+    }
+}
+
 });
 
 messageInput.addEventListener("keydown", function(event) {
@@ -204,8 +211,7 @@ document.getElementById("chatTitle").addEventListener("click", function() {
         if (newName !== currentName) {
             chatHistory[newName] = chatHistory[currentName];
             delete chatHistory[currentName];
-            localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
-        }
+            localStorage.setItem('chatHistory_' + currentUserPhone, JSON.stringify(chatHistory));           }
 
         chats.forEach(function(chat) {
             if (chat.querySelector(".chat-name").innerText === currentName) {
@@ -283,3 +289,106 @@ document.getElementById('logoutBtn').addEventListener('click', function() {
     localStorage.removeItem('isLoggedIn');
     window.location.href = '../html/signup.html';
 });
+
+
+function loadContacts() {
+    const chatList = document.getElementById('chatList');
+    chatList.innerHTML = '';
+    let contacts = JSON.parse(localStorage.getItem('contacts_' + currentUserPhone)) || [];
+    contacts.forEach(function(contact) {
+        addContactToList(contact.name, contact.phone);
+    });
+}
+
+function addContactToList(name, phone) {
+    const chatList = document.getElementById('chatList');
+    const chatDiv = document.createElement('div');
+    chatDiv.classList.add('chat');
+    chatDiv.innerHTML = `
+        <img class="profile-pic" src="../imagess/user1pic.png">
+        <div class="chat-info">
+            <div class="chat-name">${name}</div>
+            <div class="chat-message">${phone}</div>
+        </div>
+    `;
+    chatDiv.addEventListener('click', function() {
+        if (currentChat) {
+            chatHistory[currentChat] = messageArea.innerHTML;
+            localStorage.setItem('chatHistory_' + currentUserPhone, JSON.stringify(chatHistory));
+        }
+        blankScreen.style.display = "none";
+        chatWindow.style.display = "flex";
+        chatTitle.innerText = name;
+        profilepic.src = '../imagess/user1pic.png';
+        messageArea.innerHTML = chatHistory[name] || "";
+        currentChat = name;
+        messageArea.scrollTop = messageArea.scrollHeight;
+    });
+    chatList.appendChild(chatDiv);
+}
+
+document.getElementById('newChatBtn').addEventListener('click', function() {
+    const modal = document.getElementById('addContactModal');
+    const usersList = document.getElementById('usersList');
+    usersList.innerHTML = '';
+
+    let contacts = JSON.parse(localStorage.getItem('contacts_' + currentUserPhone)) || [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+        if (key.startsWith('user_')) {
+            let user = JSON.parse(localStorage.getItem(key));
+            if (user.phone !== currentUserPhone) {
+                const item = document.createElement('div');
+                item.classList.add('user-select-item');
+                item.innerHTML = `<strong>${user.name}</strong><span>${user.phone}</span>`;
+                item.addEventListener('click', function() {
+                    if (!contacts.find(c => c.phone === user.phone)) {
+                        contacts.push({ name: user.name, phone: user.phone });
+                        localStorage.setItem('contacts_' + currentUserPhone, JSON.stringify(contacts));
+                        addContactToList(user.name, user.phone);
+                    }
+                    modal.style.display = 'none';
+                });
+                usersList.appendChild(item);
+            }
+        }
+    }
+    modal.style.display = 'flex';
+});
+
+document.getElementById('cancelContactBtn').addEventListener('click', function() {
+    document.getElementById('addContactModal').style.display = 'none';
+    document.getElementById('newContactName').value = '';
+    document.getElementById('newContactPhone').value = '';
+});
+
+document.getElementById('addContactBtn').addEventListener('click', function() {
+    const name = document.getElementById('newContactName').value.trim();
+    const phone = document.getElementById('newContactPhone').value.trim();
+
+    if (!name || !phone) { alert('Please fill in both fields!'); return; }
+    if (!/^\d{10}$/.test(phone)) { alert('Enter valid 10 digit number!'); return; }
+
+    let contacts = JSON.parse(localStorage.getItem('contacts_' + currentUserPhone)) || [];
+    if (contacts.find(c => c.phone === phone)) { alert('Contact already exists!'); return; }
+
+    contacts.push({ name: name, phone: phone });
+    localStorage.setItem('contacts_' + currentUserPhone, JSON.stringify(contacts));
+    addContactToList(name, phone);
+
+    document.getElementById('addContactModal').style.display = 'none';
+    document.getElementById('newContactName').value = '';
+    document.getElementById('newContactPhone').value = '';
+
+    let theirContacts = JSON.parse(localStorage.getItem('contacts_' + phone)) || [];
+    if (!theirContacts.find(c => c.phone === currentUserPhone)) {
+        theirContacts.push({ 
+            name: currentUserPhone, 
+            phone: currentUserPhone 
+        });
+        localStorage.setItem('contacts_' + phone, JSON.stringify(theirContacts));
+    }
+});
+
+loadContacts();

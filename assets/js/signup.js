@@ -21,17 +21,21 @@ document.getElementById('signupbutton').addEventListener('click', function(){
         isValid=false;
     }
 
-    if ((password!==confirmpassword) || isNaN(password)){
+    if ((password!==confirmpassword)){
         document.getElementById('confirmError').textContent='Password is not matching'
         isValid=false
     } else {
         document.getElementById('confirmError').textContent=''
     }
 
-    localStorage.setItem('phone_number',phone)
-    localStorage.setItem('password',password)
 
     if (isValid) {
+        localStorage.setItem('user_' + phone, JSON.stringify({
+        name: 'User',
+        phone: phone,
+        password: password
+    }));
+        localStorage.setItem('currentUserPhone', phone);
         alert('Account created successfully! please login')
         window.location.href = '../html/login.html'
     }
