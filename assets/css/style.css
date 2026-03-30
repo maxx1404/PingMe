@@ -4,6 +4,12 @@
     padding: 0;
 }
 
+img.logologo{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
 
 :root {
   --green: #25D366;
@@ -281,11 +287,12 @@ select#countrycode option {
 }
 
 .chatbar-header{
-    background-color: seagreen;
+    background-color: hsl(126, 56%, 82%);
     align-items: center;
     display: flex;
     font-size: 20px;
     padding: 20px;
+    gap: 20px;
 
 }
 
@@ -295,6 +302,8 @@ select#countrycode option {
     flex:1;
     color: #000000;
 }
+
+
 
 .chat{
     display: flex;
@@ -548,7 +557,6 @@ select#countrycode option {
     font-weight: 500;
     background-size: cover;
     background-color: #000000;
-    background-image:  ;
 }
 
 .blank-screen h2{
@@ -654,3 +662,95 @@ select#countrycode option {
     cursor: pointer;
     color: gray;
 }
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 300px;
+}
+
+.modal-box h3 { font-size: 20px; }
+
+.modal-box input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.modal-box button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 300px;
+}
+
+.modal-box h3 { font-size: 20px; }
+
+.modal-box input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.modal-box button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+#addContactBtn { background: seagreen; color: white; }
+#cancelContactBtn { background: #eee; }
+
+.user-select-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+.user-select-item:hover { background: #f0f0f0; }
+.user-select-item span { color: gray; font-size: 13px; }
