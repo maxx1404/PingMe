@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PingMe</title>
+    <link rel="icon" type="image/png" href="../imagess/logo.png" >
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -44,7 +45,8 @@
                 <div class="logo-box">
                     <img src="../imagess/logo.png" alt="EchoCHAT Logo" class="logologo">
                 </div>
-                    PingME
+                <i class="fa-solid fa-pen-to-square" id="newChatBtn" title="New Chat"></i>
+                <p>New chat</p>
 
             </div>
 
@@ -52,80 +54,12 @@
                 <input type='text' id='contactSearch' placeholder='Search chats'>
             </div>
 
-            <div class="chat-list">
+            <div class="chat-list" id="chatList">
 
-                <div class='chat'>
-                    <img class='profile-pic' src='../imagess/user1pic.png'>
-                    <div class='chat-info'>
-                        <div class='chat-name'>Aarav Sharma</div>
-                        <div class='chat-message'>Late night coding again?</div>
-                    </div>
-                </div>
-                <div class='chat'>
-                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
-                    <div class='chat-info'>
-                        <div class='chat-name'>Vivaan Patel</div>
-                        <div class='chat-message'>Beach vibes were insane </div>
-                    </div>
-                </div>
-                <div class='chat'>
-                    <img class='profile-pic' src='../imagess/user1pic.png'>
-                    <div class='chat-info'>
-                        <div class='chat-name'>Aditya Verma</div>
-                        <div class='chat-message'>New gym PR today! </div>
-                    </div>
-                </div>
-                <div class='chat'>
-                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
-                    <div class='chat-info'>
-                        <div class='chat-name'>Ishaan Gupta</div>
-                        <div class='chat-message'>Birthday celebration was madness </div>
-                    </div>
-                </div>
-                <div class='chat'>
-                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
-                    <div class='chat-info'>
-                        <div class='chat-name'>Arjun Mehta</div>
-                        <div class='chat-message'>Coffee + rain = perfect combo </div>
-                    </div>
-                </div>
-                <div class='chat'>
-                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
-                    <div class='chat-info'>
-                        <div class='chat-name'>Reyansh Singh</div>
-                        <div class='chat-message'>Exam week survival mode ON </div>
-                    </div>
-                </div>
-                <div class='chat'>
-                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
-                    <div class='chat-info'>
-                        <div class='chat-name'>Krishna Rao</div>
-                        <div class='chat-message'>Roadtrip was unreal </div>
-                    </div>
-                </div>
-                <div class='chat'>
-                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
-                    <div class='chat-info'>
-                        <div class='chat-name'>Kabir Malhotra</div>
-                        <div class='chat-message'>Finally watched Oppenheimer</div>
-                    </div>
-                </div>
-                <div class='chat'>
-                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
-                    <div class='chat-info'>
-                        <div class='chat-name'>Rohan Desai</div>
-                        <div class='chat-message'>Mess food review dropping soon </div>
-                    </div>
-                </div>
-                <div class='chat'>
-                    <img class='profile-pic' src='../imagess/user2pic.jpg'>
-                    <div class='chat-info'>
-                        <div class='chat-name'>Aryan Nair</div>
-                        <div class='chat-message'>Hackathon mode ON </div>
-                    </div>
-                </div>
             </div>
-        </div>
+        </div> 
+           
+         
 
         <div class="blank-screen" id='blankScreen'>
             <h2>PingMe</h2>
@@ -181,7 +115,17 @@
                 <p id="otherProfileAbout">Available</p>
             </div>
         </div>
-    </div>
-    <script src="../js/index.js"></script> 
+
+        <div class="modal" id="addContactModal">
+            <div class="modal-box">
+                <h3>New Chat</h3>
+                <p>Select a user to chat with:</p>
+                <div id="usersList"></div>
+                <button id="cancelContactBtn">Cancel</button>
+            </div>
+        </div>
+
+    </div> 
+    <script src="../js/index.js"></script>
 </body>
 </html>
