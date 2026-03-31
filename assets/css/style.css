@@ -279,7 +279,7 @@ select#countrycode option {
 
 .chatbar{
     background-color: rgb(204, 204, 235);
-    width: 25%;
+    width: 250px;
     flex-direction: column;
     border-right: 2px solid black;
     display: flex;
@@ -475,14 +475,14 @@ select#countrycode option {
 
 
 .sidebar{
-    width: 5%;
+    width: 60px;
     background-color: var(--green-glow);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding:20px;
     justify-content: center;
-    gap:40px;
+    gap:40px;     
 }
 
 .chat-icon{
@@ -508,7 +508,8 @@ select#countrycode option {
     background-color: var(--green);
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-
+    display:flex;
+    flex-direction: row;
 }
 
 .search-bar input{
@@ -516,6 +517,43 @@ select#countrycode option {
     width: 100%;
     padding: 8px 10px;
     border: none;
+}
+
+
+.newchat-bar{
+    padding: 10px;
+    background-color: var(--green);
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display:flex;
+    flex-direction: row;
+}
+
+.newchat-bar input{
+    border-radius: 20px;
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+}
+
+.top-bars{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.search-bar input{
+    padding: 8px;
+}
+
+.newchat-bar{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.newchat-bar input{
+    padding: 8px;
 }
 
 .date-divider{
