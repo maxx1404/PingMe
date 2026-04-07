@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PingMe</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <img class="profile-pic" src="../images/user.png" alt="Profile Picture">
+            <img class="chat-icon" src="../images/speaking-bubbles-black-icon.svg" onclick="window.location.href = index.html">
+            <img class="'status-icon" src="../images/stories-icon.svg">
+            <img class="call-icon" src="../images/calling-icon.svg">
+
+        </div>
+    
+        <div class="chatbar">
+            <div class="chatbar-header">
+                <div class="logo-box">
+                    <img src="../images/logo.png" alt="PingMe Logo" class="logologo">
+                </div>
+                Status
+            </div>
+
+            <div class="status-list" id="statusList">
+
+            </div>
+
+            <div class="my-status-box">
+                <h4>My Status</h4>
+                <p id="myCurrentStatus"> No status yet</p>
+                <input type="text" id="statusTextInput" placeholder="Type a status..">
+                <button id="postStatusBtn">Post Status</button>
+            </div>
+        </div>
+
+        <div class="status-view-area" id="statusViewer">
+            <div class="status-welcome">
+                <i class='fa-solid fa-circle-half-stroke' style="font-size:60px; color:seagreen">  </i>
+                <h2>Click on a status to view it</h2>
+            </div>
+        </div>
+    </div>
+    <script src="../js/status.js"></script>
+    
+</body>
+</html>
