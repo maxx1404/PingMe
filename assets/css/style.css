@@ -279,7 +279,7 @@ select#countrycode option {
 
 .chatbar{
     background-color: rgb(204, 204, 235);
-    width: 250px;
+    width: 28%;
     flex-direction: column;
     border-right: 2px solid black;
     display: flex;
@@ -436,17 +436,32 @@ select#countrycode option {
 }
 
 .input-message button{
-    background-color: var(--bg2);
+    background-color: #def4e2;
     padding: 10px;
     font-size: 20px;
     border-radius: 20px;
     border: none;
     cursor: pointer;
     margin-right: 10px;
+    margin-left: 10px;
+}
+
+#attachment{
+    background-color: #def4e2;
+    padding: 10px;
+    font-size: 20px;
+    border-radius:90px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#attachment:hover{
+    background-color: #73ff8d
 }
 
 .input-message button:hover{
-    background-color: #d4e7ff;
+    background-color: #98bbe5;
 }
 
 
@@ -475,7 +490,7 @@ select#countrycode option {
 
 
 .sidebar{
-    width: 60px;
+    width: 7%;
     background-color: var(--green-glow);
     display: flex;
     flex-direction: column;
@@ -538,7 +553,7 @@ select#countrycode option {
 
 .top-bars{
     display: flex;
-    gap: 10px;
+    gap:1px;
     align-items: center;
 }
 
