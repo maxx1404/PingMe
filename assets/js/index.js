@@ -17,6 +17,14 @@ const currentUserPhone = localStorage.getItem('currentUserPhone');
 
 let currentUserData = JSON.parse(localStorage.getItem('user_' + currentUserPhone)) || {};
 
+function getLastMessage(phone) {
+    const messages = getMessages(phone);
+    if (messages.length === 0) return '';
+    const lastMsg = messages[messages.length - 1];
+    const prefix = lastMsg.from === currentUserPhone ? 'You: ' : '';
+    return prefix + lastMsg.text;
+}
+
 function saveCurrentUser() {
     localStorage.setItem('user_' + currentUserPhone, JSON.stringify(currentUserData));
 }
@@ -146,7 +154,7 @@ function addContactToSidebar(phone) {
         <img class="profile-pic" src="${pic}">
         <div class="chat-info">
             <div class="chat-name">${name}</div>
-            <div class="chat-message">${phone}</div>
+            <div class="chat-message" id="preview_${phone}">${getLastMessage(phone)}</div>
         </div>
     `;
 
@@ -198,6 +206,9 @@ sendBtn.addEventListener("click", function() {
 
     messageInput.value = "";
     renderMessages(currentChatPhone);
+
+    const preview = document.querySelector('[data-phone="${currentChatPhone}"] .chat-message');
+    if (preview) preview.innerText = "You: " + text;
 });
 
 messageInput.addEventListener("keydown", function(e) {
