@@ -5,8 +5,9 @@ if (localStorage.getItem('isLoggedIn') !== 'true') {
 const currentUserPhone = localStorage.getItem('currentUserPhone');
 const currentUserData = JSON.parse(localStorage.getItem('user_' + currentUserPhone)) || {};
 
-if (currentUserData.pic) {
-    document.getElementById('sidebarPic').src = currentUserData.pic;
+const sidebarPic = document.getElementById('sidebarPic');
+if (sidebarPic && currentUserData.pic) {
+    sidebarPic.src = currentUserData.pic;
 }
 
 function getStatuses() {
@@ -26,12 +27,13 @@ function postStatuses() {
     const statuses = getStatuses();
     statuses[currentUserPhone] = {
         name: currentUserData.name,
+        phone: currentUserData.phone,
         text: statusInput,
         ts: Date.now()
     };
     saveStatuses(statuses);
     document.getElementById('statusTextInput').value = '';
-    document.getElementById('myCurrentStatus').innerText = text;
+    document.getElementById('myCurrentStatus').innerText = statusInput;
     loadStatuses();
     alert('Status updated successfully!');
 }
@@ -80,15 +82,16 @@ function viewStatus(status) {
     const area=document.getElementById('statusViewArea');
     const timeAgo = Math.floor((Date.now() - status.ts) / (60 * 1000));
     const timeStr = timeAgo < 60 ? timeAgo + ' minutes ago' : Math.floor(timeAgo / 60) + ' hours ago';
-
+    
     area.innerHTML = `
     <div class='status-view-card'>
+    <p class='status-view-name'>${status.name}</p>
     <p class='status-view-text'>${status.text}</p>
     <p class='status-view-time'>${timeStr}</p>
     </div>
     `;
 }
 
-document.getElementById('postStatusBtn').addEventListener('click', postStatus);
+document.getElementById('postStatusBtn').addEventListener('click', postStatuses);
 
 loadStatuses();
