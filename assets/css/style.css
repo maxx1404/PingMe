@@ -807,3 +807,102 @@ select#countrycode option {
 }
 .user-select-item:hover { background: #f0f0f0; }
 .user-select-item span { color: gray; font-size: 13px; }
+
+
+.status-list {
+    flex:1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.status-item:hover { background: #f0f0f0; }
+
+.status-avater {
+    font-size: 30px;
+    color: seagreen;
+}
+
+.status-name {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.status-time {
+    font-size: 12px;
+    color: gray;
+}
+
+.my-status-box{
+    padding: 16px;
+    display: flex;
+    border-top: 1px solid #eee;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.my-status-box input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.my-status-box button {
+    background: seagreen;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.status-view-area{
+    flex:1;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    background-image: url('../images/backgroundimg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.status-welcome{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    color:gray;
+}
+
+.status-view-card{
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+
+}
+
+.status-view-text{
+    font-size: 16px;
+    color: #333;
+}
+
+.status-view-time{
+    font-size: 12px;
+    color: gray;
+}
