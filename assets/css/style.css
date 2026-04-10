@@ -908,10 +908,9 @@ select#countrycode option {
 }
 
 .status-avatar{
-    color: skyblue;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 36%;
     background: conic-gradient(#25D366, #25D366);
     display: flex;
     align-items: center;
@@ -919,12 +918,11 @@ select#countrycode option {
     justify-content: center;
 }
 
-.status-avatar i{
-    background: yellowgreen;
-    width: 50px;
-    height: 50px;
+.status-avatar img{
+    width: 88px;
+    height: 66px;
     padding: 10px;
-    border-radius: 50%;
+    border-radius: 42%;
     display: flex;
     align-items: center;
     justify-content: center;
