@@ -30,14 +30,14 @@ function postStatuses() {
         reader.onload = function(e) {
             const mediaData = e.target.result;
             const statuses = getStatuses();
-            statuses[currentUserPhone] = statuses[currentUserPhone] || {};
+            statuses[currentUserPhone] = statuses[currentUserPhone] || [];
             statuses[currentUserPhone].push({
                 id: Date.now(),
                 name: currentUserData.name,
                 phone: currentUserData.phone,
                 type: file ? (file.type.startsWith('image/') ? 'image' : 'video') : 'text',
                 media: mediaData || null,
-                text: statusInput || '',
+                text: '',
                 ts: Date.now(),
                 seenBy: []
 
@@ -54,13 +54,21 @@ function postStatuses() {
         if (!statusInput) { alert('Please enter a status message.'); return; }
 
     const statuses = getStatuses();
-    statuses[currentUserPhone] = {
-        name: currentUserData.name,
-        phone: currentUserData.phone,
-        text: statusInput,
-        ts: Date.now()
-    };
-    saveStatuses(statuses);    
+
+        statuses[currentUserPhone] = statuses[currentUserPhone] || [];
+
+        statuses[currentUserPhone].push({
+            id: Date.now(),
+            name: currentUserData.name,
+            phone: currentUserPhone,
+            type: "text",
+            media: null,
+            text: statusInput,
+            ts: Date.now(),
+            seenBy: []
+        });
+
+        saveStatuses(statuses); 
     document.getElementById('statusTextInput').value = '';
     document.getElementById('myCurrentStatus').innerText = statusInput;
     loadStatuses();
@@ -69,20 +77,18 @@ function postStatuses() {
 }
 
 function loadStatuses() {
+    statusArray = [];
     const statusList = document.getElementById('statusList');
     statusList.innerHTML = '';
+
     const statuses = getStatuses();
     const now = Date.now();
     const twentyFourHours = 24 * 60 * 60 * 1000;
 
-    Object.values(statuses).forEach(function(status) {
-        if (now -status.ts > twentyFourHours) return;
-        statusArray.push(status);
-
-        if(status.phone == currentUserPhone) {
-            document.getElementById('myCurrentStatus').innerText = status.text; 
-            return;
-        }
+    Object.values(statuses).forEach(userStatuses => {
+        userStatuses.forEach(status => {
+            if (now - status.ts > twentyFourHours) return;
+            statusArray.push(status);
 
         const item = document.createElement('div');
         item.classList.add('status-item');
@@ -92,7 +98,7 @@ function loadStatuses() {
 
         item.innerHTML = `
         <div class='status-avatar'>
-            <img src="${currentUserData.pic}" || '../images/default.png'}">
+            <img src=" ${currentUserData.pic || '../images/default.png'}">
         </div>
         <div class='status-info'>
         <div class='status-name'>${status.name}</div>
@@ -108,18 +114,30 @@ function loadStatuses() {
         statusList.appendChild(item);
 
         });
-    }
+    });
+}
 
 function viewStatus(status) {
+    const statuses = getStatuses();
+    statuses[status.phone].forEach(s => {
+        if(s.id === status.id && !s.seenBy.includes(currentUserPhone)) {
+            s.seenBy.push(currentUserPhone);
+        }
+    });
+    saveStatuses(statuses);
+
     const area=document.getElementById('statusViewArea');
     const timeAgo = Math.floor((Date.now() - status.ts) / (60 * 1000));
     const timeStr = timeAgo < 60 ? timeAgo + ' minutes ago' : Math.floor(timeAgo / 60) + ' hours ago';
     let mediaHTML = '';
-    if(status.media) {
+    if (status.type === 'text') {
+        mediaHTML = `div class='status-text'>${status.text}</div>`;
+    }
+    else if(status.type === 'image') {
         mediaHTML = `<img src='${status.media}' class='status-view-media'>`;
     }
     else  if(status.type ==='video') {
-        mediaHTMl = `<video controls class="status-view-media"> <source src='${status.media}' </video>`;
+        mediaHTML = `<video controls class="status-view-media"> <source src="${status.media}" type="video/mp4"> </video>`;
     }
     area.innerHTML = `
     <div class='status-view-card'>
@@ -127,13 +145,21 @@ function viewStatus(status) {
     ${mediaHTML}
     <p class='status-view-text'>${status.text}</p>
     <p class='status-view-time'>${timeStr}</p>
+    <p class='status-view-seen'>Seen by ${status.seenBy.length}</p>
     </div>
     `;
 
+
+    if (status.type === 'video') {
+        const video = area.querySelector('video');
+        video.onended = () => {
+            nextStatus();
+        };
+    } else {
     setTimeout(() => {
         nextStatus();
-    },5000);
-}
+    },7000);
+}}
 
 function nextStatus() {
     currentStatusIndex++;
