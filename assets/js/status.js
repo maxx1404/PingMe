@@ -142,7 +142,6 @@ function viewStatus(status) {
     area.innerHTML = `
     <div class='status-view-card'>
     <p class='status-view-name'>${status.name}</p>
-    ${mediaHTML}
     <p class='status-view-text'>${status.text}</p>
     <p class='status-view-time'>${timeStr}</p>
     <p class='status-view-seen'>Seen by ${status.seenBy.length}</p>
@@ -158,7 +157,7 @@ function viewStatus(status) {
     } else {
     setTimeout(() => {
         nextStatus();
-    },7000);
+    },70000);
 }}
 
 function nextStatus() {
