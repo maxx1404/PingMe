@@ -275,7 +275,7 @@ document.getElementById("contactSearch").addEventListener("input", function() {
 });
 
 openMsgSearch.addEventListener("click", function() {
-    msgSearchBar.style.display = "flex";
+    msgSearchBar.style.display = "inline-flex";
     msgSearchInput.focus();
 });
 
