@@ -564,26 +564,54 @@ select#countrycode option {
     border: none;
 }
 
-.top-bars{
+.top-bars {
     display: flex;
-    gap:1px;
+    flex-direction: row;
     align-items: center;
+    padding: 8px 10px;
+    gap: 8px;
+    background-color: #b7ebbd;
 }
 
-.search-bar input{
-    padding: 8px;
+.search-bar {
+    flex: 1;
+    background: none;
+    padding: 0;
+    border-radius: 0;
 }
 
-.newchat-bar{
+.search-bar input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: none;
+    background: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.newchat-bar {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 6px;
+    gap: 10px;
+    background: none;
+    padding: 0;
+    border-radius: 0;
 }
 
-.newchat-bar input{
-    padding: 8px;
+.newchat-bar i {
+    font-size: 18px;
+    cursor: pointer;
+    color: #333;
+    padding: 6px;
+    border-radius: 50%;
+    transition: background 0.2s;
 }
 
+.newchat-bar i:hover {
+    background: rgba(0,0,0,0.1);
+}
 .date-divider{
     align-self: center;
     background-color: rgb(255, 255, 255);
@@ -745,13 +773,15 @@ select#countrycode option {
 }
 
 .modal-box {
-    background: white;
+    background: rgb(113, 180, 134);
     padding: 30px;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     gap: 12px;
     width: 300px;
+    align-items: center;
+
 }
 
 .modal-box h3 { font-size: 20px; }
@@ -809,7 +839,7 @@ select#countrycode option {
     font-size: 15px;
 }
 
-#addContactBtn { background: seagreen; color: white; }
+#addContactBtn { background: seagreen; color: rgb(255, 255, 255); }
 #cancelContactBtn { background: #eee; }
 
 .user-select-item {
@@ -903,6 +933,9 @@ select#countrycode option {
 }
 
 .status-view-card{
+    border: #000000;
+    border-color: #000000;
+    border-width: 1px;
     background: white;
     padding: 20px;
     border-radius: 12px;
@@ -943,3 +976,108 @@ select#countrycode option {
     align-items: center;
     justify-content: center;
 }
+.status-avatar-ring {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: conic-gradient(#25D366, #25D366);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: rotate 7s linear infinite;
+}
+
+.sidebar-icon-wrap.active img {
+    background-color: #25d366;
+    border-radius: 50%;
+    padding: 8px;
+    filter: brightness(10);
+}
+
+
+.status-view-area { position: relative; }
+
+#statusProgressBar { display: none; position: absolute; top: 10px; left: 12px; right: 12px; gap: 4px; z-index: 10; }
+#statusProgressBar.visible { display: flex; }
+.progress-segment { flex: 1; height: 3px; background: rgba(255,255,255,0.35); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0%; background: #fff; border-radius: 2px; }
+
+
+#groupInfoPanel {
+    display: none;
+    position: fixed;    /* change absolute to fixed */
+    right: 0;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: white;
+    flex-direction: column;
+    z-index: 9999;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+    overflow-y: auto;
+}
+
+.userslist{
+    align-items: center;
+}
+
+
+#themeToggle {
+    margin-left: auto;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+#themeToggle:hover { background: rgba(0,0,0,0.1); }
+
+/* ── DARK MODE ── */
+body.dark { background-color: #111b21; }
+body.dark .chatbar,
+body.dark .chatbar-header,
+body.dark .chat-list,
+body.dark .chat,
+body.dark .search-bar,
+body.dark .newchat-bar,
+body.dark .top-bars { background-color: #202c33 !important; }
+body.dark .chat:hover { background: #2a3942 !important; }
+body.dark .chat-name { color: #e9edef; }
+body.dark .chat-message { color: #8696a0; }
+body.dark .search-bar input { background: #2a3942; color: #e9edef; }
+body.dark .sidebar { background-color: #111b21; }
+body.dark .chat-header { background-color: #202c33; }
+body.dark .chat-title { color: #e9edef; }
+body.dark .chat-icons i { color: #aebac1; }
+body.dark .chatbar-header { color: #e9edef; }
+body.dark .newchat-bar i { color: #aebac1; }
+body.dark .date-divider { background: #2a3942; color: #8696a0; }
+body.dark .sent-message { background-color: #005c4b; color: #e9edef; }
+body.dark .recieved-message { background-color: #202c33; color: #e9edef; }
+body.dark .input-message { background-color: #202c33; }
+body.dark .input-message input { background: #2a3942; color: #e9edef; border-color: #3b4a54; }
+body.dark .input-message button { background-color: #2a3942; color: #e9edef; }
+body.dark #attachment { background-color: #2a3942; color: #e9edef; }
+body.dark .blank-screen { background-color: #111b21; color: #e9edef; }
+
+
+body.dark .status-view-area { background-color: #111b21; }
+body.dark .status-view-card { background: #202c33; color: #e9edef; }
+body.dark .status-view-name { color: #e9edef; }
+body.dark .status-view-time { color: #8696a0; }
+body.dark .status-view-seen { color: #8696a0; }
+body.dark .status-list { background: #202c33; }
+body.dark .status-item { border-bottom-color: #2a3942; color: #e9edef; }
+body.dark .status-item:hover { background: #2a3942; }
+body.dark .status-name { color: #e9edef; }
+body.dark .status-time { color: #8696a0; }
+body.dark .my-status-box { background: #202c33; border-top-color: #2a3942; }
+body.dark .my-status-box input { background: #2a3942; color: #e9edef; border-color: #3b4a54; }
+body.dark .my-status-box button { background: #00a884; }
+body.dark .my-status-box p { color: #8696a0; }
+body.dark .my-status-box h4 { color: #e9edef; }
+
+body.dark .message-area { background-image: url('../imagess/darkthemebg.png'); }
+body.dark .blank-screen { background-image: url('../imagess/darkthemebg.png'); }
+body.dark .status-view-area { background-image: url('../imagess/darkthemebg.png'); }
