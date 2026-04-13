@@ -42,13 +42,13 @@
 
         <div class = 'chatbar'>
 
-            <div class = 'chatbar-header'>
-
+            <div class="chatbar-header">
                 <div class="logo-box">
-                    <img src="../imagess/onlyname.png" alt="EchoCHAT Logo" class="logologo">
+                    <img src="../imagess/onlyname.png" alt="PingMe Logo" class="logologo">
                 </div>
-
+                <i class="fa-solid fa-moon" id="themeToggle" title="Toggle Dark Mode"></i>
             </div>
+
             <div class="top-bars">
 
                 <div class="search-bar">
@@ -57,7 +57,7 @@
 
                 <div class="newchat-bar">
                     <i class="fa-solid fa-pen-to-square" id="newChatBtn" title="New Chat"></i>
-                    <input type="text" id="newChatInput" placeholder="New Chat">
+                    <i class="fa-solid fa-people-group" id="newGroupBtn" title="New Group"></i>
                 </div>
 
             </div>
@@ -101,6 +101,7 @@
             </div>
                 <div class = "input-message">
                     <button id="attachment">+</button>
+                    <input type="file" id="mediaFileInput" accept="image/*,video/*" style="display:none">
                     <input type = 'text' id = "messageInput" placeholder = 'Type your message...'>
 
                     <button id="sendBtn"> Send </button>
@@ -128,12 +129,54 @@
             <div class="modal-box">
                 <h3>New Chat</h3>
                 <p>Select a user to chat with:</p>
-                <div id="usersList"></div>
+                <div id="usersList" class="userslist"></div>
                 <button id="cancelContactBtn">Cancel</button>
             </div>
         </div>
 
-    </div> 
+
+
+
+                <div class="modal" id="createGroupModal">
+                    <div class="modal-box">
+                        <h3>New Group</h3>
+                        <input type="text" id="groupNameInput" placeholder="Group name">
+                        <p style="font-size:13px;color:gray">Select members:</p>
+                        <div id="groupMembersList"></div>
+                        <button id="createGroupBtn">Create Group</button>
+                        <button id="cancelGroupBtn">Cancel</button>
+                    </div>
+                </div>
+
+                <div class="other-profile-panel" id="groupInfoPanel">
+                    <div class="profile-panel-header">
+                        <i class="fa-solid fa-arrow-left" id="closeGroupInfo"></i>
+                        <span>Group Info</span>
+                    </div>
+                    <div class="profile-panel-body">
+                        <img class="profile-panel-pic" id="groupInfoPic" src="../imagess/user1pic.png">
+                        <input type="file" id="groupPicInput" accept="image/*" style="display:none">
+                        <button id="changeGroupPicBtn" style="display:none">Change Photo</button>
+                        <h2 id="groupInfoName"></h2>
+                        <input type="text" id="groupNameEditInput" placeholder="Edit group name" style="display:none">
+                        <button id="saveGroupNameBtn" style="display:none">Save Name</button>
+                        <hr style="width:100%">
+                        <p style="color:gray;font-size:13px">Members</p>
+                        <div id="groupMembersDisplay"></div>
+                        <button id="addMemberBtn" style="display:none;background:seagreen;color:white;border:none;padding:8px 16px;border-radius:8px;cursor:pointer">Add Member</button>
+                        <button id="leaveGroupBtn" style="background:#e53935;color:white;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;margin-top:10px">Leave Group</button>
+                    </div>
+                </div>
+
+                <div class="modal" id="addMemberModal">
+                    <div class="modal-box">
+                        <h3>Add Member</h3>
+                        <div id="addMemberList"></div>
+                        <button id="cancelAddMemberBtn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
     <script src="../js/index.js"></script>
 </body>
 </html>
